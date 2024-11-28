@@ -15,7 +15,7 @@ const count = ref(0)
 <<<<<<< HEAD
     <button type="button" @click="count++">will-change not go to where {{ count }}</button>
 =======
-    <button type="button" @click="count++">count is {{ count }}</button>
+    <button type="button" @click="count++">count is master {{ count }}</button>
 >>>>>>> parent of c2db33b (text)
     <p>
       Edit
