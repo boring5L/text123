@@ -12,11 +12,8 @@ const count = ref(0)
   <h1>{{ msg }}</h1>
 
   <div class="card">
-<<<<<<< HEAD
-    <button type="button" @click="count++">will-change not go to where {{ count }}</button>
-=======
+    <button type="button" @click="count++">will-change not go to where sitll sitll {{ count }}</button>
     <button type="button" @click="count++">count is {{ count }}</button>
->>>>>>> parent of c2db33b (text)
     <p>
       Edit
       <code>components/HelloWorld.vue</code> to test HMR
