@@ -86,9 +86,11 @@ const count = ref(0)
   display: flex;
   background-color: aqua;
   width: 250px;
-  height: 50px;
+  height: 250px;
   align-items: flex-end;
   justify-content: space-between;
+  position: absolute;
+  z-index: -1;
   .rad-b{
     display: flex;
     /* margin-left: 60px; */
@@ -97,10 +99,12 @@ const count = ref(0)
     height: 50px;
   }
   .rad-c{
-    display: flex;
+    position: absolute;
+    /* display: flex; */
     background-color: blue;
-    width: 50px;
-    height: 50px;
+    width: 80%;
+    height: 170px;
+    margin: 25px 25px;
   }
   .rad-d{
     background-color: blueviolet;
