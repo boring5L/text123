@@ -37,10 +37,11 @@ const count = ref(0);
       </div>
     </div>
     <div class="rad-g">
-      <div class="rad-g1"></div>
-       <div class="rad-g2"></div>
-      <div class="rad-g1"></div>
-       <div class="rad-g2"></div>
+      <div class="rad-g1">
+        <div class="rad-g2"></div>
+      </div>
+
+      <div class="rad-g1"><div class="rad-g2"></div></div>
     </div>
   </div>
 
@@ -115,30 +116,43 @@ const count = ref(0);
   color: white; /* 白色字体 */
   /* padding: 10px;  */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 阴影效果 */
-  .rad-f{
-      display: flex;
-      width: 150px;
-      height: 200px;
-      background-color: bisque;
-      flex-direction: column;
-      justify-content: space-between;
-      .rad-f1{
-        height: 50px;
-        background-color: blue;
-        /* margin: 0 0 10px 0; */
-      }
+  .rad-f {
+    display: flex;
+    width: 150px;
+    height: 200px;
+    background-color: bisque;
+    flex-direction: column;
+    justify-content: space-between;
+    .rad-f1 {
+      height: 50px;
+      background-color: blue;
+      /* margin: 0 0 10px 0; */
+    }
+    .rad-f2 {
+      height: 50px;
+      width: 50px;
+      background-color: blueviolet;
+    }
   }
-  .rad-g{
+  .rad-g {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 150px;
     height: 200px;
     background-color: aquamarine;
-    .rad-g1{
-    height: 50px;
-    margin: 25px 0 25px 0;
-    background-color: azure;     
+    .rad-g1 {
+      display: flex;
+      height: 50px;
+      margin: 25px 0 25px 0;
+      justify-content: flex-end;
+      background-color: azure;
+
+      .rad-g2{
+      height: 50px;
+      width: 50px;
+      background-color: bisque;
+      }
     }
   }
 }
