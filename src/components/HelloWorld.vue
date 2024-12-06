@@ -1,10 +1,41 @@
 <script setup>
-import { ref } from "vue";
 
+
+
+import { ref, onMounted } from "vue";
+import qs from "qs"
 defineProps({
   msg: String,
 });
+let qsstring = "https://example.com/page?name=JohnDoe&age=30#info";
+
+function urlqsstring(qsstring) {
+  const params = {};
+  let [a, b] = qsstring ? qsstring.split("?") : [];
+  if (b) {
+    const parmas = qs.parse(b);
+    Object.keys(parmas).forEach((key) => {
+      let [aVal = ""] = parmas[key]?.split("#") || [];
+      params[key] = aVal; // 存储参数
+    });
+  }
+  
+  return params; // 返回 params
+}
+    // 定义一个响应式变量来存储URL参数
+    const urlParams = ref({});
+
+    // 在组件挂载时调用函数
+    onMounted(() => {
+      const queryString = qsstring; // 获取当前URL的查询字符串
+      urlParams.value = urlqsstring(queryString); // 更新urlParams
+    });
+
+  
+
+ 
 const i = ref(5);
+
 function countshu(num) {
   i.value = i.value + num;
   return i;
@@ -17,7 +48,7 @@ const count = ref(0);
   <div class="rad-a">
     <div class="rad-b">{{ i }}</div>
     <div class="rad-c">
-      <button style="width: auto; height: auto" @click="countshu(1)"></button>
+      <button style="width: auto; height: auto" @click="urlqsstring()">{{ urlParams  }}</button>
     </div>
     <div class="rad-d">
       <button style="" @click="countshu(i)"></button>
@@ -40,11 +71,19 @@ const count = ref(0);
       <div class="rad-g1">
         <div class="rad-g2"></div>
       </div>
-
       <div class="rad-g1"><div class="rad-g2"></div></div>
     </div>
+    <div class="rad-h" >
+    </div>
+    <div class="rad-h1"></div>
   </div>
-
+  <div class="rad-i">
+      <div class="rad-i1"></div>
+      <div class="rad-i2">
+        <div class="rad-i3"></div>
+        <div class="rad-i4"></div>
+      </div>
+    </div>
   <h1>{{ msg }}</h1>
   <h1>{{ msg }}</h1>
   <h1>{{ msg }}</h1>
@@ -68,6 +107,7 @@ const count = ref(0);
 </template>
 
 <style scoped>
+
 .read-the-docs {
   color: #888;
 }
@@ -106,7 +146,7 @@ const count = ref(0);
   }
 }
 .rad-e {
-  width: 300px;
+  width: 400px;
   height: 300px;
   position: fixed; /* 使用fixed定位 */
   display: flex;
@@ -118,7 +158,7 @@ const count = ref(0);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 阴影效果 */
   .rad-f {
     display: flex;
-    width: 150px;
+    width: 50%;
     height: 200px;
     background-color: bisque;
     flex-direction: column;
@@ -138,7 +178,7 @@ const count = ref(0);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 150px;
+    width: 50%;
     height: 200px;
     background-color: aquamarine;
     .rad-g1 {
@@ -147,13 +187,57 @@ const count = ref(0);
       margin: 25px 0 25px 0;
       justify-content: flex-end;
       background-color: azure;
-
       .rad-g2{
       height: 50px;
       width: 50px;
       background-color: bisque;
       }
     }
+
+  }
+  .rad-h{
+      top: 180px;
+      position: absolute;
+      width: 30px;
+      height: 60px;
+      background-color: brown;
+  }
+  .rad-h1{
+      right: 0;
+      top: 50px;
+      position: absolute;
+      width: 30px;
+      height: 60px;
+      background-color: brown;
   }
 }
+.rad-i{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background-color: #888;
+    .rad-i1{
+      width: 100%;
+      height: 50px;
+      background-color: aqua;
+    }
+    .rad-i2{
+      width: 100%;
+      height: 50px;
+      display: flex;
+      .rad-i3{
+      width: 50%;
+      height: 100%;
+      background-color: red;
+    }
+      .rad-i4{
+      width: 50%;
+      height: 100%;
+      background-color: aliceblue;
+    }
+    }
+
+  }
 </style>
