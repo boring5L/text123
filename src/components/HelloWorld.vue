@@ -1,5 +1,13 @@
 <script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter();
 
+function goToText1 ()  {
+  router.push('/text1'); // 使用 router 而不是 this.$router
+};
+function goToHellowWorld ()  {
+  router.push('/'); // 使用 router 而不是 this.$router
+};
 
 
 import { ref, onMounted } from "vue";
@@ -7,7 +15,8 @@ import qs from "qs"
 defineProps({
   msg: String,
 });
-let qsstring = "https://example.com/page?name=JohnDoe&age=30#info";
+let qsstring = "https://gd.189.cn/plus/h5/2022/cyb/index.html#/fifteen?i=1&cmpid=qyxs-qywx-dg-tg-hd-3GBllqy&phone=Wdh3xnqDCFSlsMgTUDto1A%3D%3D&miaoyiOpenid=oM2JhwaqKiEP-KtmKTAIEpI6U6sI";
+const { origin,pathname } = location;
 
 function urlqsstring(qsstring) {
   const params = {};
@@ -24,11 +33,15 @@ function urlqsstring(qsstring) {
 }
     // 定义一个响应式变量来存储URL参数
     const urlParams = ref({});
-
+    const urlQuery  = ref("");
+    let urlAll = ref("");
     // 在组件挂载时调用函数
     onMounted(() => {
       const queryString = qsstring; // 获取当前URL的查询字符串
       urlParams.value = urlqsstring(queryString); // 更新urlParams
+      urlQuery.value = qs.stringify(urlParams.value);
+      urlAll.value = `${origin}?${urlQuery.value}`;
+      
     });
 
   
@@ -45,10 +58,18 @@ const count = ref(0);
 </script>
 
 <template>
+  <div class="text1button">
+    <h1>欢迎来到我的页面</h1>goToHellowWorld
+    <button @click="goToText1">跳转到 /text1</button>
+    <button @click="goToHellowWorld">跳转到 /</button>
+  </div>
   <div class="rad-a">
     <div class="rad-b">{{ i }}</div>
     <div class="rad-c">
       <button style="width: auto; height: auto" @click="urlqsstring()">{{ urlParams  }}</button>
+      <button style="width: auto; height: auto" @click="">{{ pathname }}</button>
+      <button style="width: auto; height: auto" @click="">{{ urlQuery }}</button>
+      <button style="width: auto; height: auto" @click="">{{ urlAll }}</button>
     </div>
     <div class="rad-d">
       <button style="" @click="countshu(i)"></button>
@@ -107,7 +128,11 @@ const count = ref(0);
 </template>
 
 <style scoped>
-
+.text1button{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .read-the-docs {
   color: #888;
 }
