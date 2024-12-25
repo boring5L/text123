@@ -9,6 +9,12 @@ function goToHellowWorld ()  {
   router.push('/'); // 使用 router 而不是 this.$router
 };
 
+function goToUC ()  {
+  router.push('/uc'); // 使用 router 而不是 this.$router
+};
+function goToUDtly ()  {
+  router.push('/routercs'); // 使用 router 而不是 this.$router
+};
 
 import { ref, onMounted } from "vue";
 import qs from "qs"
@@ -58,18 +64,24 @@ const count = ref(0);
 </script>
 
 <template>
+    <div>
+    <a href="https://vite.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="../assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
   <div class="text1button">
     <h1>欢迎来到我的页面</h1>goToHellowWorld
     <button @click="goToText1">跳转到 /text1</button>
     <button @click="goToHellowWorld">跳转到 /</button>
+    <button @click="goToUC">跳转到 / UC</button>
+    <button @click="goToUDtly ">跳转到 / 动态路由</button>
   </div>
   <div class="rad-a">
     <div class="rad-b">{{ i }}</div>
     <div class="rad-c">
-      <button style="width: auto; height: auto" @click="urlqsstring()">{{ urlParams  }}</button>
-      <button style="width: auto; height: auto" @click="">{{ pathname }}</button>
-      <button style="width: auto; height: auto" @click="">{{ urlQuery }}</button>
-      <button style="width: auto; height: auto" @click="">{{ urlAll }}</button>
     </div>
     <div class="rad-d">
       <button style="" @click="countshu(i)"></button>
@@ -138,6 +150,8 @@ const count = ref(0);
 }
 
 .rad-a {
+  bottom:0;
+  right: 0;
   justify-content: center;
   display: flex;
   background-color: aqua;
@@ -171,8 +185,8 @@ const count = ref(0);
   }
 }
 .rad-e {
-  width: 400px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   position: fixed; /* 使用fixed定位 */
   display: flex;
   left: 0; /* 距离左边0 */
@@ -264,5 +278,17 @@ const count = ref(0);
     }
     }
 
+    .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
   }
 </style>
