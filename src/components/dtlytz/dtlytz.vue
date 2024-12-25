@@ -3,6 +3,16 @@
     {{ item.name }}
     </div> -->
     <button @click="CS">n hao </button>
+    <div>
+      <h1>Items List</h1>
+      <input v-model="newItem" placeholder="Add a new item" />
+      <button @click="addNewItem">Add Item</button>
+      <ul>
+        <li v-for="(item,index) in item" :key="index">
+        {{ item }} <button @click="removeItem( index )">Remove</button>
+        </li>
+      </ul>
+    </div>
     <button style="position: absolute ;left:0 ; top: 0;" @click="goToHellowWorld">跳转到 /</button>
       <div>
           <h1>数据表格</h1>

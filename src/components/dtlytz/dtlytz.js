@@ -1,4 +1,5 @@
 import { useRouter } from 'vue-router'
+import { mapGetters } from 'vuex';
   
 export default {
    props: {
@@ -10,8 +11,15 @@ export default {
   name:"dtlytz",
   data(){
       return{
+        newItem:'',
         dataArray:Array.from({length:25},(_,i)=>`数据${i + 1}`)
       };
+  },
+  computed:{
+     ...mapGetters(['getItems']),
+     item(){
+      return this.getItems;
+     }
   },
   methods:{
     navigateToDetail(item){
@@ -22,6 +30,16 @@ export default {
      this.$router.push("/");
     },
     CS(){console.log(this.dataArray)},
+    addNewItem(){
+      if(this.newItem.trim()){
+        this.$store.dispatch('addItem',this.newItem.trim());
+        this.newItem = '';
+        console.log(this.item)
+      }
+    },
+    removeItem(index){
+      this.$store.dispatch('removeItem',index);
+    }
   },
   mounted(){
        
